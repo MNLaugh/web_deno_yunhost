@@ -55,6 +55,17 @@ chmod +x $install_dir/deno
 
 ynh_script_progression --message="Setting up $app..." --weight=2
 
+if YOUR_REPOSITORY_URL is set; then
+    # Clone the Git repository
+    git clone YOUR_REPOSITORY_URL $install_dir
+else
+  if ARCHIVE is set; then
+    # Download the archive
+    curl -L ARCHIVE -o archive.tar.gz
+    # Extract the archive
+    tar -xzf $ARCHIVE -C $install_dir
+  fi
+fi
 
 ### `ynh_setup_source` is used to install an app from a zip or tar.gz file,
 ### downloaded from an upstream source, like a git repository.
